@@ -3,7 +3,13 @@
     <head>
     </head>
     <body>
-        
+        <p>Enter a name: </p>
+        <input type="text" id="textbox"/>
+        <input type="button" onclick="search()" value="Find"/>
+        <p id="nm">Name: </p>
+        <p id="cty">City: </p>
+        <p id="hse">House: </p>
+        <p id="yrs">Years: </p>
     </body>
 </html>
 <script>
@@ -13,10 +19,6 @@
     request.open('GET', requestURL);
     request.responseType = 'json';
     request.send();
-
-    request.onload = function {
-        
-    }
 
     function search() {
         var kings = request.response;
@@ -40,14 +42,3 @@ Similarly, load this JSON file at this address:
 Instead of loading all the object on the page, have a text box 
 that will take an attribute that belongs to these objects, and 
 output the contents of the specific object it’s associated with.
-
-
-
-
-        <p>Enter a name: </p>
-        <input type="text" id="textbox"/>
-        <input type="button" onclick="search()" value="Find"/>
-        <p id="nm">Name: </p>
-        <p id="cty">City: </p>
-        <p id="hse">House: </p>
-        <p id="yrs">Years: </p>
