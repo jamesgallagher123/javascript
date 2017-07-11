@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    </head>
+    <body>
+        
+    </body>
+</html>
+<script>
+    var requestURL = "https://raw.githubusercontent.com/ewomackQA/JSONDataRepo/master/example.json"
+
+    var request = new XMLHttpRequest();
+    request.open('GET', requestURL);
+    request.responseType = 'json';
+    request.send();
+
+    request.onload = function {
+        
+    }
+
+    function search() {
+        var kings = request.response;
+        var searchName = document.getElementById("textbox").value;
+
+        for (var i = 0; i < kings.length; i++) {
+            if (searchName == kings[i].nm) {
+                document.getElementById("nm").textContent = 'Name: ' + kings["nm"];
+                document.getElementById("cty").textContent = 'City: ' + kings["cty"];
+                document.getElementById("hse").textContent = 'House: ' + kings["hse"];
+                document.getElementById("yrs").textContent = 'Years: ' + kings["yrs"];
+            }
+        }
+    }
+</script>
+
+<!--
+Similarly, load this JSON file at this address:
+    https://raw.githubusercontent.com/ewomackQA/JSONDataRepo/master/kings.json
+
+Instead of loading all the object on the page, have a text box 
+that will take an attribute that belongs to these objects, and 
+output the contents of the specific object it’s associated with.
+
+
+
+
+        <p>Enter a name: </p>
+        <input type="text" id="textbox"/>
+        <input type="button" onclick="search()" value="Find"/>
+        <p id="nm">Name: </p>
+        <p id="cty">City: </p>
+        <p id="hse">House: </p>
+        <p id="yrs">Years: </p>
