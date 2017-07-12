@@ -30,8 +30,21 @@
     let carArray = [];
 
     function displayContents() {
+        // clear box
+
+        // populate box
+        let listbox = document.getElementById("garage");
         for (let i = 0; i < carArray.length; i++) {
-            document.getElementById("garage").
+            let option = document.createElement("option");
+
+            //this prints [object Object] - FIX IT!
+            //option.text = carArray[i];
+
+            option.text = carArray[i].make + " " +
+                 carArray[i].model + " Reg: " + carArray[i].reg + 
+                 " Faults: " + carArray[i].faults;
+
+            listbox.add(option);
         }
     }
 
@@ -54,6 +67,7 @@
             faults: faults,
         };
         carArray.push(carObject);
+        displayContents();
         //outputArray();
     }
 
