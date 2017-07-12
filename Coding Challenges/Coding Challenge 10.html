@@ -20,13 +20,43 @@
         <label>Enter number of faults: </label>
         <input type="text" id="faults" />
         <br><br>
-        <input type="button" id="add" value="Add" />
+        <input type="button" onclick="addCar()" id="add" value="Add" />
         <br><br>
-        <select id="" size="10" />
+        <select id="garage" size="10" />
     </body>
 </html>
 
 <script>
+    let carArray = [];
+
+    function displayContents() {
+        for (let i = 0; i < carArray.length; i++) {
+            document.getElementById("garage").
+        }
+    }
+
+    function outputArray() {
+        for (let i = 0; i < carArray.length; i ++) {
+            console.log(carArray[i]);
+        }
+    }
+
+    function addCar() {
+        //get data from gui
+        let make = document.getElementById("make").value;
+        let model = document.getElementById("model").value;
+        let reg = document.getElementById("reg").value;
+        let faults = document.getElementById("faults").value;
+        carObject = {
+            make: make,
+            model: model,
+            reg: reg,
+            faults: faults,
+        };
+        carArray.push(carObject);
+        //outputArray();
+    }
+
     function displayModels() {
         let selectedMake = document.getElementById("make").value;
         let fordModels = ["focus", "fiesta", "mondeo"];
@@ -75,3 +105,15 @@ Make
 Model
 Reg
 Faults
+
+car [
+    make: "ford",
+    model: "focus",
+    reg: 123,
+    faults: 1
+]
+
+carArray [
+    car1,
+    car2
+]
