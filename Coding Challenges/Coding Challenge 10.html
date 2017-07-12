@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    </head>
+    <body>
+        <label>Select Make: </label>
+        <select id="make" onclick="displayModels()">
+            <option value="ford">Ford</option>
+            <option value="vauxhall">Vauxhall</option>
+        </select>
+        <br><br>
+        <label>Select Model: </label>
+        <select id="model">
+            <!-- models go here !-->
+        </select>
+        <br><br>
+        <label>Enter Reg: </label>
+        <input type="text" id="reg" />
+        <br><br>
+        <label>Enter number of faults: </label>
+        <input type="text" id="faults" />
+        <br><br>
+        <input type="button" id="add" value="Add" />
+        <br><br>
+        <select id="" size="10" />
+    </body>
+</html>
+
+<script>
+    function displayModels() {
+        let selectedMake = document.getElementById("make").value;
+        let fordModels = ["focus", "fiesta", "mondeo"];
+        let vauxhallModels = ["corsa"]
+        clearListbox(model);
+        //console.log(selectedMake);
+        if (selectedMake == "ford") {
+            populate(fordModels);
+        } else if (selectedMake == "vauxhall") {
+            populate(vauxhallModels);
+        }
+    }
+
+    function populate(models) {
+        let select = document.getElementById("model");
+        for (let i = 0; i < models.length; i ++) {
+            let option = document.createElement('option');
+            option.text = option.value = models[i];
+            select.add(option, 0);
+        }
+    }
+
+    function clearListbox(selectbox) {
+        for(let i = selectbox.options.length - 1 ; i >= 0 ; i--)
+        {
+            selectbox.remove(i);
+        }
+    }
+</script>
+
+<!--
+Create a virtual garage with the following functionality;
+    Check in cars to the garage
+    Check out cars
+    Output the contents of the garage
+    Calculate the bill for a car, dependant on its attributes
+All of these should be able to be done via a user interface, as well as the following non-garage related features;
+    Creating cars
+    Creating cars with no faults
+    Creating cars with numerous faults
+
+
+Car
+
+Make
+Model
+Reg
+Faults

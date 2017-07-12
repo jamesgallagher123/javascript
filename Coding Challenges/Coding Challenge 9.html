@@ -22,14 +22,14 @@
 
     function search() {
         var kings = request.response;
-        var searchName = document.getElementById("textbox").value;
 
         for (var i = 0; i < kings.length; i++) {
-            if (searchName == kings[i].nm) {
+            if (document.getElementById("textbox").value == kings[i].nm) {
                 document.getElementById("nm").textContent = 'Name: ' + kings[i].nm;
                 document.getElementById("cty").textContent = 'City: ' + kings[i].cty;
                 document.getElementById("hse").textContent = 'House: ' + kings[i].hse;
                 document.getElementById("yrs").textContent = 'Years: ' + kings[i].yrs;
+                break;
             }
         }
     }
