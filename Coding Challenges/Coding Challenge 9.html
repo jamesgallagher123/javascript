@@ -13,7 +13,7 @@
     </body>
 </html>
 <script>
-    var requestURL = "https://raw.githubusercontent.com/ewomackQA/JSONDataRepo/master/example.json"
+    var requestURL = "https://raw.githubusercontent.com/ewomackQA/JSONDataRepo/master/kings.json"
 
     var request = new XMLHttpRequest();
     request.open('GET', requestURL);
@@ -26,10 +26,10 @@
 
         for (var i = 0; i < kings.length; i++) {
             if (searchName == kings[i].nm) {
-                document.getElementById("nm").textContent = 'Name: ' + kings["nm"];
-                document.getElementById("cty").textContent = 'City: ' + kings["cty"];
-                document.getElementById("hse").textContent = 'House: ' + kings["hse"];
-                document.getElementById("yrs").textContent = 'Years: ' + kings["yrs"];
+                document.getElementById("nm").textContent = 'Name: ' + kings[i].nm;
+                document.getElementById("cty").textContent = 'City: ' + kings[i].cty;
+                document.getElementById("hse").textContent = 'House: ' + kings[i].hse;
+                document.getElementById("yrs").textContent = 'Years: ' + kings[i].yrs;
             }
         }
     }
