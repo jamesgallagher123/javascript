@@ -20,7 +20,7 @@
     loadData("http://pokeapi.co/api/v2/pokemon/?limit=811", "pokemon1", displayPokemon);
     loadData("http://pokeapi.co/api/v2/pokemon/?limit=811", "pokemon2", displayPokemon);
     //add status moves to array
-    let specialArray = [];
+    let statusArray = [];
     getStatusMoves();
     
     function getStatusMoves() {
@@ -36,7 +36,8 @@
         function populateArray(jsonObj) {
             let statusMoves = jsonObj["moves"]
             for (let i = 0; i < statusMoves.length; i++) {
-                specialArray += statusMoves[i].name;
+                statusArray.push(statusMoves[i].name);
+                console.log(statusMoves[i].name);
             }
         }
     }
@@ -53,7 +54,20 @@
         let pokemonURL = "http://pokeapi.co/api/v2/pokemon/" + pokemonID;
         loadData(pokemonURL, "moves", displayMoves);
         //filter out status moves
-
+        removeStatus();
+        function removeStatus() {
+            let i = 0;
+            while(i < moves.options.length) {
+                for(let n = 0; n < statusArray.length; n++)
+                {
+                    if(statusArray[n] === moves[i].value){
+                        console.log(statusArray[n]);
+                        moves.remove(i);
+                    }
+                }
+                i++;
+            }
+        }
     }
 
     function loadData(url, boxName, callback) {
