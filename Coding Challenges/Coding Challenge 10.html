@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     </head>
     <body>
         <label>Select Make: </label>
@@ -22,36 +23,49 @@
         <br><br>
         <input type="button" onclick="addCar()" id="add" value="Add" />
         <br><br>
-        <select id="garage" size="10" />
+        <select id="garage" size="10">
+        </select>
+        <br><br>
+        <input type="button" onclick="removeCar()" id="remove" value="Remove" />
+        <input type="button" onclick="calcualteBill()" id="bill" value="Calculate Bill" />
     </body>
 </html>
 
 <script>
     let carArray = [];
 
+    function calcualteBill() {
+        var string = document.getElementById("garage").value;
+        var splitString = string.split(" ");
+        let faults = splitString[5];
+        alert("This car costs £" + (faults*10));
+    }
+
     function displayContents() {
         // clear box
-
+        clearListbox(garage);
         // populate box
         let listbox = document.getElementById("garage");
         for (let i = 0; i < carArray.length; i++) {
             let option = document.createElement("option");
-
-            //this prints [object Object] - FIX IT!
-            //option.text = carArray[i];
-
-            option.text = carArray[i].make + " " +
-                 carArray[i].model + " Reg: " + carArray[i].reg + 
-                 " Faults: " + carArray[i].faults;
-
+            option.text = carArray[i].make + " " + 
+                carArray[i].model + " Reg: " + carArray[i].reg + 
+                " Faults: " + carArray[i].faults;
             listbox.add(option);
         }
     }
 
-    function outputArray() {
-        for (let i = 0; i < carArray.length; i ++) {
-            console.log(carArray[i]);
+    function removeCar() {
+        var string = document.getElementById("garage").value;
+        var splitString = string.split(" ");
+        //assume reg is unique value
+        let reg = splitString[3];
+        for (let i = 0; i < carArray.length; i++) {
+            if (carArray[i].reg === reg) {
+                carArray.splice(i, 1);
+            }
         }
+        displayContents();
     }
 
     function addCar() {
@@ -112,22 +126,3 @@ All of these should be able to be done via a user interface, as well as the foll
     Creating cars with no faults
     Creating cars with numerous faults
 
-
-Car
-
-Make
-Model
-Reg
-Faults
-
-car [
-    make: "ford",
-    model: "focus",
-    reg: 123,
-    faults: 1
-]
-
-carArray [
-    car1,
-    car2
-]
