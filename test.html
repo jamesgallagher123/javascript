@@ -1,0 +1,27 @@
+<script>
+    //add status moves to array
+    let specialArray = [];
+    getStatusMoves();
+    
+    for (let i = 0; i <specialArray.length; i++) {
+        console.log(specialArray[i]);
+    }
+
+    function getStatusMoves() {
+        let requestURL = "http://pokeapi.co/api/v2/move-damage-class/1/";
+        let request = new XMLHttpRequest();
+        request.open('GET', requestURL);
+        request.responseType = 'json';
+        request.send();
+        request.onload = function() {
+            let jsonObj = request.response;
+            populateArray(jsonObj);
+        }
+        function populateArray(jsonObj) {
+            let statusMoves = jsonObj["moves"]
+            for (let i = 0; i < statusMoves.length; i++) {
+                specialArray += statusMoves[i].name;
+            }
+        }
+    }
+</script>
