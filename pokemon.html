@@ -37,7 +37,7 @@
             let statusMoves = jsonObj["moves"]
             for (let i = 0; i < statusMoves.length; i++) {
                 statusArray.push(statusMoves[i].name);
-                console.log(statusMoves[i].name);
+                //console.log(statusMoves[i].name);
             }
         }
     }
@@ -48,13 +48,17 @@
         {
             moves.remove(i);
         }
-        //pokemon ID = index + 1 
-        let pokemonID = (document.getElementById("pokemon1").selectedIndex + 1);
-        //get pokemons moves
-        let pokemonURL = "http://pokeapi.co/api/v2/pokemon/" + pokemonID;
-        loadData(pokemonURL, "moves", displayMoves);
-        //filter out status moves
-        removeStatus();
+        //get pokemons moves and filter out status moves
+        filterStatus(removeStatus);
+
+        function filterStatus(callback) {
+            //pokemon ID = index + 1 
+            let pokemonID = (document.getElementById("pokemon1").selectedIndex + 1);
+            let pokemonURL = "http://pokeapi.co/api/v2/pokemon/" + pokemonID;
+            loadData(pokemonURL, "moves", displayMoves);
+            callback();
+        }
+
         function removeStatus() {
             let i = 0;
             while(i < moves.options.length) {
@@ -142,3 +146,5 @@ Additional
 
 MOVE .type.name = the element
 MOVE .damage_class.name != status
+
+
